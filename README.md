@@ -1,7 +1,8 @@
 Game Free
 ====
 
-Thalisson Estrela</br>
+Thalisson Estrela
+
 Ruiter Alves
 
 Primeiro game desenvolvido, está em fase de construção
