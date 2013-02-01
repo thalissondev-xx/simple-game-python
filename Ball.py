@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 
 class Ball(pygame.sprite.Sprite):
-  def __init__(self, startPosition):
+	def __init__(self, startPosition):
             pygame.sprite.Sprite.__init__(self)
             self.speed = [2,2]
             self.image = pygame.image.load("images/bolinha.png")
@@ -19,4 +19,4 @@ class Ball(pygame.sprite.Sprite):
                 self.speed[1] = -self.speed[1]
             if self.imagerect.bottom > 400:
                 self.imagerect.centerx = self.init_pos[0]
-                self.imagerect.centery = self.init_pos[1]
+                self.imagerect.centery = self.init_pos[1]]

@@ -2,6 +2,7 @@ import sys, pygame, os
 from Ball import Ball
 from Paddle import Paddle
 from RectColid import RectColid
+from Button import Button
 from pygame.locals import *
 pygame.init()
 
@@ -10,14 +11,51 @@ screen = pygame.display.set_mode(size)
 black = 0, 0, 0
 white = 255, 255, 255
 
+gamestate = {"menu":0,"game":1}
+
+actual_state = gamestate["menu"]
 class Game(object):
 
-  def loopGame(self):
+	def gameOver(self):
+		pass
+
+	def start(self):
+		
+		global actual_state
+	
+		clock = pygame.time.Clock()
+		running_menu = True
+		
+		
+		while running_menu:
+		
+		
+			#fica checando se o estado == game pra mudar
+			#se nao continua no menu (e so muda quando clicar
+			clock.tick(120)
+			buttonStart = Button([width/2,height/2])
+
+			for event in pygame.event.get():
+				if event.type==QUIT:
+					running_menu = False
+				elif event.type == MOUSEBUTTONDOWN:
+					if buttonStart.pressed(pygame.mouse.get_pos()):
+						actual_state = gamestate["game"]
+						running_menu = False
+	
+			
+			
+			
+			screen.fill(white)
+			screen.blit(buttonStart.btn, buttonStart.btnrect)
+			pygame.display.flip()
+
+	def loopGame(self):
 		clock = pygame.time.Clock()
 		ball = Ball([100,100])
 		paddle = Paddle([width/2,395])
 		font = pygame.font.Font(None, 25)
-		sound_collision = pygame.mixer.Sound("music/tick.mp3")
+		sound_collision = pygame.mixer.Sound("music/tick.wav")
 		vector = []
 		posRectx = 90
 		posRecty = 60
@@ -32,6 +70,11 @@ class Game(object):
 				vector.append(rectColid)
 
 		running_game = True
+		
+		
+		if(actual_state == gamestate["menu"]):
+			self.start()
+		
 		while running_game:
 			clock.tick(120)
 
@@ -59,6 +102,10 @@ class Game(object):
 					sound_collision.play(1)
 					score += 1
 
+			if not len(vector):
+				#self.start()
+				pass
+
 			ball.update()
 			paddle.update()
 
@@ -73,4 +120,5 @@ class Game(object):
 			pygame.display.flip()
 
 if __name__ == "__main__":
-	Game().loopGame()
+	game = Game()
+	game.loopGame()

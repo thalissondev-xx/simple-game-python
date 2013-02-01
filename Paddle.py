@@ -2,7 +2,7 @@ import sys, pygame
 from pygame.locals import *
 
 class Paddle(pygame.sprite.Sprite):
-  def __init__(self, startPosition):
+	def __init__(self, startPosition):
 		pygame.sprite.Sprite.__init__(self)
 		#Color imagem
 		self.image = pygame.image.load("images/paddle.gif")
@@ -14,4 +14,4 @@ class Paddle(pygame.sprite.Sprite):
 		if self.imagerect.left < 0:
 			self.imagerect.centerx += 5
 		elif self.imagerect.right > 600:
-			self.imagerect.centerx -= 5
+			self.imagerect.centerx -= 55
