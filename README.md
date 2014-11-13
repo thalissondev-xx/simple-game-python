@@ -1,3 +1,3 @@
-Game Free
+Game Ball
 ====
-First game, under contruction
+Using python with the pygame module
